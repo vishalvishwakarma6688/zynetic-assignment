@@ -38,16 +38,16 @@ A high-performance telemetry ingestion system for electric vehicle charging infr
 
 Before running this project, ensure you have:
 
-1. **Docker Desktop** - [Download here](https://www.docker.com/products/docker-desktop/)
-   - Must be installed and running
-   - Verify: `docker --version` and `docker-compose --version`
+- **Docker Desktop** - Must be installed and running
+- **Node.js 18+** - Optional, only needed for local development
+- **Git** - To clone the repository
 
-2. **Node.js 18+** (optional, for local development only)
-   - [Download here](https://nodejs.org/)
-   - Verify: `node --version`
-
-3. **Git** (to clone the repository)
-   - [Download here](https://git-scm.com/)
+Verify installations:
+```bash
+docker --version
+docker-compose --version
+node --version
+```
 
 ## Installation & Setup
 
