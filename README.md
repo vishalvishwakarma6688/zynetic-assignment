@@ -53,7 +53,7 @@ Before running this project, ensure you have:
 
 ### Step 1: Clone the Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/vishalvishwakarma6688/zynetic-assignment.git
 cd zynetic-assignment
 ```
 
