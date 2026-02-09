@@ -1,0 +1,32 @@
+{
+  "name": "zynetic-assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node src/server.js",
+    "test": "jest --verbose",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
+    "pg": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.2.2",
+    "@types/pg": "^8.16.0",
+    "fast-check": "^4.5.3",
+    "jest": "^30.2.0",
+    "supertest": "^7.2.2"
+  }
+}

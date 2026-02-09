@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log
+.env
+.git
+.gitignore
+README.md
+QUICKSTART.md
+IMPLEMENTATION_SUMMARY.md
+test-api.js
+coverage
+*.test.js
+__tests__
+.kiro
+requirement.md
