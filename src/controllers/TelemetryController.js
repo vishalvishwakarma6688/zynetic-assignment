@@ -1,14 +1,10 @@
 const { validateMeterTelemetry, validateVehicleTelemetry } = require('../services/ValidationService');
 const { saveMeterTelemetry, saveVehicleTelemetry } = require('../repositories/TelemetryRepository');
 
-/**
- * Ingest meter telemetry data
- */
 async function ingestMeterData(req, res) {
     try {
         const data = req.body;
 
-        // Validate request body
         const validation = validateMeterTelemetry(data);
         if (!validation.valid) {
             return res.status(400).json({
@@ -18,7 +14,6 @@ async function ingestMeterData(req, res) {
             });
         }
 
-        // Save to database (dual-write)
         await saveMeterTelemetry(data);
 
         return res.status(201).json({
@@ -35,14 +30,10 @@ async function ingestMeterData(req, res) {
     }
 }
 
-/**
- * Ingest vehicle telemetry data
- */
 async function ingestVehicleData(req, res) {
     try {
         const data = req.body;
 
-        // Validate request body
         const validation = validateVehicleTelemetry(data);
         if (!validation.valid) {
             return res.status(400).json({
@@ -52,7 +43,6 @@ async function ingestVehicleData(req, res) {
             });
         }
 
-        // Save to database (dual-write)
         await saveVehicleTelemetry(data);
 
         return res.status(201).json({

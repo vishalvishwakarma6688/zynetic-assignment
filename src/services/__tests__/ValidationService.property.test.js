@@ -10,8 +10,6 @@ describe('ValidationService - Property-Based Tests', () => {
 
     describe('Property 1: Meter Telemetry Validation Completeness', () => {
         it('should accept meter telemetry if and only if all fields are valid', () => {
-            // Feature: energy-ingestion-engine, Property 1: Meter Telemetry Validation Completeness
-            // Validates: Requirements 1.1, 1.3, 1.4, 2.1, 2.2, 2.6
 
             fc.assert(
                 fc.property(
@@ -30,7 +28,6 @@ describe('ValidationService - Property-Based Tests', () => {
                     (data) => {
                         const result = validationService.validateMeterTelemetry(data);
 
-                        // Determine if data should be valid
                         const hasAllFields =
                             !!data.meterId &&
                             data.kwhConsumedAc !== null &&
@@ -40,7 +37,6 @@ describe('ValidationService - Property-Based Tests', () => {
                             !!data.timestamp;
 
                         if (!hasAllFields) {
-                            // If missing fields, should be invalid
                             expect(result.valid).toBe(false);
                             expect(result.errors.length).toBeGreaterThan(0);
                             return;
@@ -52,7 +48,6 @@ describe('ValidationService - Property-Based Tests', () => {
                             typeof data.voltage === 'number';
 
                         if (!hasValidTypes) {
-                            // If invalid types, should be invalid
                             expect(result.valid).toBe(false);
                             expect(result.errors.length).toBeGreaterThan(0);
                             return;
@@ -64,13 +59,11 @@ describe('ValidationService - Property-Based Tests', () => {
                             data.voltage <= 300;
 
                         if (!hasValidRanges) {
-                            // If out of range, should be invalid
                             expect(result.valid).toBe(false);
                             expect(result.errors.length).toBeGreaterThan(0);
                             return;
                         }
 
-                        // Check timestamp validity
                         const timestamp = new Date(data.timestamp);
                         if (isNaN(timestamp.getTime())) {
                             expect(result.valid).toBe(false);
@@ -83,13 +76,10 @@ describe('ValidationService - Property-Based Tests', () => {
                         const hasValidTimestamp = diffMinutes <= 5;
 
                         if (!hasValidTimestamp) {
-                            // If timestamp out of range, should be invalid
                             expect(result.valid).toBe(false);
                             expect(result.errors.length).toBeGreaterThan(0);
                             return;
                         }
-
-                        // All checks passed, should be valid
                         expect(result.valid).toBe(true);
                         expect(result.errors.length).toBe(0);
                     }
@@ -102,8 +92,6 @@ describe('ValidationService - Property-Based Tests', () => {
 
 describe('Property 2: Vehicle Telemetry Validation Completeness', () => {
     it('should accept vehicle telemetry if and only if all fields are valid', () => {
-        // Feature: energy-ingestion-engine, Property 2: Vehicle Telemetry Validation Completeness
-        // Validates: Requirements 1.2, 1.3, 1.4, 2.3, 2.4, 2.5, 2.6
 
         fc.assert(
             fc.property(
@@ -123,7 +111,6 @@ describe('Property 2: Vehicle Telemetry Validation Completeness', () => {
                 (data) => {
                     const result = validationService.validateVehicleTelemetry(data);
 
-                    // Determine if data should be valid
                     const hasAllFields =
                         !!data.vehicleId &&
                         data.soc !== null &&
@@ -135,7 +122,6 @@ describe('Property 2: Vehicle Telemetry Validation Completeness', () => {
                         !!data.timestamp;
 
                     if (!hasAllFields) {
-                        // If missing fields, should be invalid
                         expect(result.valid).toBe(false);
                         expect(result.errors.length).toBeGreaterThan(0);
                         return;
@@ -148,7 +134,6 @@ describe('Property 2: Vehicle Telemetry Validation Completeness', () => {
                         typeof data.batteryTemp === 'number';
 
                     if (!hasValidTypes) {
-                        // If invalid types, should be invalid
                         expect(result.valid).toBe(false);
                         expect(result.errors.length).toBeGreaterThan(0);
                         return;
@@ -160,13 +145,11 @@ describe('Property 2: Vehicle Telemetry Validation Completeness', () => {
                         data.batteryTemp >= -40 && data.batteryTemp <= 80;
 
                     if (!hasValidRanges) {
-                        // If out of range, should be invalid
                         expect(result.valid).toBe(false);
                         expect(result.errors.length).toBeGreaterThan(0);
                         return;
                     }
 
-                    // Check timestamp validity
                     const timestamp = new Date(data.timestamp);
                     if (isNaN(timestamp.getTime())) {
                         expect(result.valid).toBe(false);
@@ -179,13 +162,10 @@ describe('Property 2: Vehicle Telemetry Validation Completeness', () => {
                     const hasValidTimestamp = diffMinutes <= 5;
 
                     if (!hasValidTimestamp) {
-                        // If timestamp out of range, should be invalid
                         expect(result.valid).toBe(false);
                         expect(result.errors.length).toBeGreaterThan(0);
                         return;
                     }
-
-                    // All checks passed, should be valid
                     expect(result.valid).toBe(true);
                     expect(result.errors.length).toBe(0);
                 }

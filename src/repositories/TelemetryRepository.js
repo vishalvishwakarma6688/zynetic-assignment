@@ -9,14 +9,12 @@ async function saveMeterTelemetry(data) {
     try {
         await client.query('BEGIN');
 
-        // Insert into historical store (append-only)
         await client.query(
             `INSERT INTO meter_telemetry (meter_id, kwh_consumed_ac, voltage, timestamp)
              VALUES ($1, $2, $3, $4)`,
             [data.meterId, data.kwhConsumedAc, data.voltage, data.timestamp]
         );
 
-        // Upsert into operational store (latest reading)
         await client.query(
             `INSERT INTO meter_status (meter_id, kwh_consumed_ac, voltage, timestamp, updated_at)
              VALUES ($1, $2, $3, $4, NOW())
@@ -47,14 +45,12 @@ async function saveVehicleTelemetry(data) {
     try {
         await client.query('BEGIN');
 
-        // Insert into historical store (append-only)
         await client.query(
             `INSERT INTO vehicle_telemetry (vehicle_id, soc, kwh_delivered_dc, battery_temp, timestamp)
              VALUES ($1, $2, $3, $4, $5)`,
             [data.vehicleId, data.soc, data.kwhDeliveredDc, data.batteryTemp, data.timestamp]
         );
 
-        // Upsert into operational store (latest reading)
         await client.query(
             `INSERT INTO vehicle_status (vehicle_id, soc, kwh_delivered_dc, battery_temp, timestamp, updated_at)
              VALUES ($1, $2, $3, $4, $5, NOW())

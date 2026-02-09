@@ -5,10 +5,8 @@ const PORT = process.env.PORT || 3000;
 
 let server;
 
-// Start server
 const startServer = async () => {
     try {
-        // Test database connection
         await pool.query('SELECT NOW()');
         console.log('Database connection successful');
 
@@ -23,7 +21,6 @@ const startServer = async () => {
     }
 };
 
-// Graceful shutdown
 const gracefulShutdown = async (signal) => {
     console.log(`\n${signal} received. Starting graceful shutdown...`);
 
@@ -43,9 +40,7 @@ const gracefulShutdown = async (signal) => {
     }
 };
 
-// Handle shutdown signals
 process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
 process.on('SIGINT', () => gracefulShutdown('SIGINT'));
 
-// Start the server
 startServer();
